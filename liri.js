@@ -65,21 +65,17 @@ function getConcerts (value) {
 // SPOTIFY (spotify-this-song)
 
 function getSongs (value) {
-
     spotify.search({
         type: 'track', 
         query: value,
     }).then(function(response) {
-        
-        if (response.tracks.total === 0) {
-            songlessSpotify();
-        } else {
+
         console.log("Artist Name: " + response.tracks.items[0].artists[0].name);
         console.log("Song title: " + response.tracks.items[0].name);
         console.log("Preview of song: " + response.tracks.items[3].preview_url);
         console.log("Album: " + response.tracks.items[0].album.name);
         console.log("--------------------");   
-        } 
+    
     })
     .catch(function(err) {
         console.log("Woops! Something went wrong. " + err);
@@ -87,29 +83,11 @@ function getSongs (value) {
 
 }
 
-function songlessSpotify (value) {
+/*Ideally, there would be code that populates Ace of Base - The Sign when no search information
+is given. I was thinking of using an if statement to state that if there is no value, ace of base
+will populate (ex: if(!value) or if(value === 0)) but I could not get it to work. 
 
-    spotify.search({
-        type: 'track', 
-        query: value,
-    }).then(function(response) {
-
-    for (var i=0;i < response.tracks.items.length; i++) {
-
-        if (response.tracks.items[i].artists[0].name === "Ace of Base") {
-        console.log("Artist Name: " + response.tracks.items[0].artists[0].name);
-        console.log("Song title: " + response.tracks.items[0].name);
-        console.log("Preview of song: " + response.tracks.items[3].preview_url);
-        console.log("Album: " + response.tracks.items[0].album.name);
-        console.log("--------------------");    
-        }
-    }
-    }).catch(function(err) {
-        console.log("Woops! Something went wrong. " + err);
-    });
-
-}
-
+*/
 // OMDB (movie-this) (WORKING)
 function getMovieInfo (value) {
 
